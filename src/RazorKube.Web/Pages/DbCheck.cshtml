@@ -1,0 +1,12 @@
+﻿@page
+@model DbCheckModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Database Check</h1>
+</div>
+
+<p>Database version: @Model.DbVersion</p>
+<p>Database tables: @Model.DbTables</p>

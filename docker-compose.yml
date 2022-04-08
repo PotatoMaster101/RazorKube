@@ -1,0 +1,23 @@
+version: "3"
+services:
+  web:
+    container_name: razorkube
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    depends_on:
+      - db
+    ports:
+      - "8080:80"
+  db:
+    container_name: postgres
+    hostname: postgres
+    image: postgres:alpine
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_PASSWORD: "P@ssw0rd123!!!"
+    volumes:
+      - data:/var/lib/postgresql/data
+volumes:
+  data:

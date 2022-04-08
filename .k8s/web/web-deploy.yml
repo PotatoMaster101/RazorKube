@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: webapp-deploy
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: razorkube
+  template:
+    metadata:
+      labels:
+        app: razorkube
+    spec:
+      containers:
+        - name: razorkube
+          image: potatomaster101/razorkube
+          imagePullPolicy: IfNotPresent
+          ports:
+            - name: http
+              containerPort: 80
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: webapp
+spec:
+  type: LoadBalancer
+  selector:
+    app: razorkube
+  ports:
+    - name: "http"
+      port: 80
+      targetPort: 80
